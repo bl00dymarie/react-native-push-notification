@@ -13,8 +13,7 @@
     "android",
     "notifications",
     "push",
-    "apns",
-    "firebase"
+    "apns"
   ],
   "bugs": {
     "url": "https://github.com/zo0r/react-native-push-notification/issues"

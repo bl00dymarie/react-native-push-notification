@@ -413,12 +413,6 @@ public class RNPushNotificationHelper {
             bundle.putBoolean("userInteraction", true);
             intent.putExtra("notification", bundle);
 
-            // Add message_id to intent so react-native-firebase/messaging can identify it
-            String messageId = bundle.getString("messageId");
-            if (messageId != null) {
-                intent.putExtra("message_id", messageId);
-            }
-
             Uri soundUri = null;
 
             if (!bundle.containsKey("playSound") || bundle.getBoolean("playSound")) {
@@ -525,9 +519,6 @@ public class RNPushNotificationHelper {
                     bundle.putString("action", action);
                     actionIntent.putExtra("notification", bundle);
                     actionIntent.setPackage(packageName);
-                    if (messageId != null) {
-                        intent.putExtra("message_id", messageId);
-                    }
 
                     int flags = Build.VERSION.SDK_INT >= Build.VERSION_CODES.M ? PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE : PendingIntent.FLAG_UPDATE_CURRENT;
 
