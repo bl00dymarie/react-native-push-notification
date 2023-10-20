@@ -129,6 +129,25 @@ public class RNPushNotification extends ReactContextBaseJavaModule implements Ac
     }
 
     @ReactMethod
+    public void requestPermissions() {
+      final RNPushNotificationJsDelivery fMjsDelivery = mJsDelivery;
+      
+      FirebaseMessaging.getInstance().getToken()
+              .addOnCompleteListener(new OnCompleteListener<String>() {
+                  @Override
+                  public void onComplete(@NonNull Task<String> task) {
+                      if (!task.isSuccessful()) {
+                          Log.e(LOG_TAG, "exception", task.getException());
+                          return;
+                      }
+                      WritableMap params = Arguments.createMap();
+                      params.putString("deviceToken", task.getResult());
+                      fMjsDelivery.sendEvent("remoteNotificationsRegistered", params);
+                  }
+              });
+    }
+
+    @ReactMethod
     public void presentLocalNotification(ReadableMap details) {
         Bundle bundle = Arguments.toBundle(details);
         // If notification ID is not provided by the user, generate one at random
