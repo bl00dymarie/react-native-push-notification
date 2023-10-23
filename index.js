@@ -225,7 +225,7 @@ Notifications.localNotification = function({...details}) {
  * @param {Date}    details.date - The date and time when the system should deliver the notification
  */
 Notifications.localNotificationSchedule = function({...details}) {
-  if ('android' === Platform.os && details && !details.channelId) {
+  if ('android' === Platform.OS && details && !details.channelId) {
     console.warn('No channel id passed, notifications may not work.');
   }
   
