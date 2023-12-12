@@ -79,10 +79,6 @@ public class RNPushNotification extends ReactContextBaseJavaModule implements Ac
         Bundle bundle = null;
         if (intent.hasExtra("notification")) {
             bundle = intent.getBundleExtra("notification");
-        } else if (intent.hasExtra("google.message_id")) {
-            bundle = new Bundle();
-
-            bundle.putBundle("data", intent.getExtras());
         }
 
         if (bundle == null) {
